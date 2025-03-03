@@ -1,0 +1,264 @@
+<div class="dashboard-container">
+  <div class="sidebar">
+    <button
+      *ngFor="let btn of ['Total', 'WhatsApp', 'SMS', 'Not Sent']"
+      [class.active]="activeButton === btn"
+      (click)="setActiveButton(btn)"
+    >
+      {{ btn }}
+    </button>
+  </div>
+
+  <div class="main-content">
+    <div class="stats-panel">
+      <div class="stats-header">
+        <h1>Total Messages</h1>
+        <div class="message-types">
+          <ul class="list">
+            <li [class.active]="activeButton === 'Total'">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="20px"
+                viewBox="0 -960 960 960"
+                width="20px"
+                fill="#FBA231"
+              >
+                <path
+                  d="m147-237-51-51 288-288 157 156 269-302 54 48-320 360-160-160-237 237Z"
+                />
+              </svg>
+              Total Messages
+            </li>
+            <li [class.active]="activeButton === 'WhatsApp'">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="20px"
+                viewBox="0 -960 960 960"
+                width="20px"
+                fill="#2EBC96"
+              >
+                <path
+                  d="m147-237-51-51 288-288 157 156 269-302 54 48-320 360-160-160-237 237Z"
+                /></svg
+              >WhatsApp
+            </li>
+            <li [class.active]="activeButton === 'SMS'">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="20px"
+                viewBox="0 -960 960 960"
+                width="20px"
+                fill="#3981F7"
+              >
+                <path
+                  d="m147-237-51-51 288-288 157 156 269-302 54 48-320 360-160-160-237 237Z"
+                /></svg
+              >SMS
+            </li>
+            <li [class.active]="activeButton === 'Not Sent'">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="20px"
+                viewBox="0 -960 960 960"
+                width="20px"
+                fill="#FF0606"
+              >
+                <path
+                  d="m147-237-51-51 288-288 157 156 269-302 54 48-320 360-160-160-237 237Z"
+                /></svg
+              >Not Sent
+            </li>
+          </ul>
+        </div>
+        <div class="time-periods">
+          <ul>
+            <li>1M</li>
+            <li>3M</li>
+            <li class="active">6M</li>
+            <li>1Y</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="stats-total">
+        <h1>{{ totalMessages }}</h1>
+        <div class="total-percentage">
+          <p>{{ totalMessagesPercentage }}</p>
+          vs last month
+        </div>
+      </div>
+
+      <div class="stats-chart">
+        <p-chart
+          type="line"
+          [data]="lineChartData"
+          [options]="lineChartOptions"
+          height="10rem"
+        ></p-chart>
+      </div>
+    </div>
+
+    <!-- Messages Table -->
+    <div class="messages-table">
+      <div class="table-header">
+        <h2>All Messages</h2>
+        <button class="filter-button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="21"
+            height="15"
+            viewBox="0 0 21 15"
+            fill="none"
+          >
+            <path
+              d="M2.33008 2.29065H19.0001M5.45564 7.50002H15.8743M9.6231 12.7094H11.7068"
+              stroke="#1B2559"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          Filters
+        </button>
+      </div>
+
+      <p-table [value]="messages" styleClass="p-datatable-sm">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Created Date</th>
+            <th>Target Type</th>
+            <th>Target</th>
+            <th>Message Type</th>
+            <th>Send via</th>
+            <th>Status</th>
+            <th>Message</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-message>
+          <tr>
+            <td>{{ message.date }}</td>
+            <td>
+              <span [class]="message.targetType">{{ message.targetType }}</span>
+            </td>
+            <td>{{ message.target }}</td>
+            <td>{{ message.messageType }}</td>
+            <td>
+              <span [class]="message.status">{{ message.status }}</span>
+            </td>
+            <td>
+              <span [class]="message.sent === 'Sent' ? 'sent' : 'not-sent'">{{
+                message.sent
+              }}</span>
+            </td>
+            <td>{{ message.message }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+
+  <div class="right-panel">
+    <div class="card messages-average">
+      <div class="header-btn">
+        <h2>Messages Average</h2>
+      </div>
+
+      <div class="average-stats">
+        <div class="stat">
+          <h3>{{ messageAverage }}</h3>
+          <p>Monthly</p>
+        </div>
+        <div class="divider"></div>
+        <div class="stat">
+          <h3>{{ dailyAverage }}</h3>
+          <p>Daily</p>
+        </div>
+      </div>
+
+      <div class="gauge-chart">
+        <p-chart
+          type="doughnut"
+          [data]="gaugeChartData"
+          [options]="gaugeChartOptions"
+          height="80px"
+        ></p-chart>
+        <div class="gauge-value">
+          <h2>{{ totalMessages }}</h2>
+          <span>{{ 70 }}%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Devices Card -->
+    <div class="card devices">
+      <div class="card-header">
+        <div class="btn-header">
+          <div class="total-devices">
+            Total devices
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <g clip-path="url(#clip0_2535_1218)">
+                <path
+                  d="M6 10C4.9 10 4 10.9 4 12C4 13.1 4.9 14 6 14C7.1 14 8 13.1 8 12C8 10.9 7.1 10 6 10ZM18 10C16.9 10 16 10.9 16 12C16 13.1 16.9 14 18 14C19.1 14 20 13.1 20 12C20 10.9 19.1 10 18 10ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10Z"
+                  fill="white"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_2535_1218">
+                  <rect width="24" height="24" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+          <h2>Devices</h2>
+        </div>
+      </div>
+
+      <div class="device-list">
+        <div class="device-item" *ngFor="let device of devices">
+          <div class="device-info">
+            <div class="device-icon">
+              <i class="pi pi-mobile">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="42"
+                  height="42"
+                  viewBox="0 0 42 42"
+                  fill="none"
+                >
+                  <circle cx="21" cy="21" r="21" fill="#F4F7FE" />
+                  <path
+                    d="M25.2105 8.49178L25.5277 8.0038L25.8449 7.52744L26.5472 6.44691C26.6378 6.3191 26.6039 6.13321 26.4679 6.05188C26.3433 5.95893 26.1621 5.99378 26.0828 6.13321L25.3351 7.28345L25.0179 7.77143L24.7007 8.25941C23.6812 7.85276 22.5597 7.632 21.3589 7.632C20.1695 7.632 19.0367 7.85276 18.0171 8.25941L17.7 7.77143L17.3828 7.28345L16.6351 6.13321C16.5445 6.0054 16.3746 5.97055 16.25 6.05188C16.1253 6.14482 16.0914 6.3191 16.1707 6.44691L16.873 7.52744L17.1902 8.0038L17.5074 8.49178C15.1285 9.6304 13.5085 11.7798 13.5085 14.2546H29.2207C29.2093 11.7798 27.6007 9.6304 25.2105 8.49178ZM17.9832 11.9425C17.5187 11.9425 17.1449 11.5591 17.1449 11.0827C17.1449 10.6064 17.5187 10.223 17.9832 10.223C18.4476 10.223 18.8214 10.6064 18.8214 11.0827C18.8214 11.5591 18.4476 11.9425 17.9832 11.9425ZM24.7121 11.9425C24.2476 11.9425 23.8738 11.5591 23.8738 11.0827C23.8738 10.6064 24.2476 10.223 24.7121 10.223C25.1765 10.223 25.5503 10.6064 25.5503 11.0827C25.5617 11.5591 25.1878 11.9425 24.7121 11.9425Z"
+                    fill="#79DD7F"
+                  />
+                  <path
+                    d="M13.6106 15.3931L13.486 15.4047V16.8338V18.0073V28.069C13.486 29.0798 14.2789 29.8931 15.2645 29.8931H16.5446C16.4992 30.0442 16.4766 30.2068 16.4766 30.3695V30.4624V31.0434V34.0177C16.4766 34.9705 17.2356 35.7489 18.1645 35.7489C19.0934 35.7489 19.8524 34.9705 19.8524 34.0177V31.0434V30.4624V30.3695C19.8524 30.2068 19.8297 30.0442 19.7844 29.8931H22.911C22.8656 30.0442 22.843 30.2068 22.843 30.3695V30.4624V31.0434V34.0177C22.843 34.9705 23.602 35.7489 24.5309 35.7489C25.4598 35.7489 26.2188 34.9705 26.2188 34.0177V31.0434V30.4624V30.3695C26.2188 30.2068 26.1961 30.0442 26.1508 29.8931H27.4309C28.4164 29.8931 29.2094 29.0798 29.2094 28.069V18.0073V16.8338V15.3931H29.0848H13.6106Z"
+                    fill="#79DD7F"
+                  />
+                  <path
+                    d="M10.6879 15.4047C9.75898 15.4047 9 16.1832 9 17.1359V24.5253C9 25.478 9.75898 26.2565 10.6879 26.2565C11.6168 26.2565 12.3758 25.478 12.3758 24.5253V17.1359C12.3645 16.1716 11.6168 15.4047 10.6879 15.4047Z"
+                    fill="#79DD7F"
+                  />
+                  <path
+                    d="M32.0187 15.4047C31.0898 15.4047 30.3308 16.1832 30.3308 17.1359V24.5253C30.3308 25.478 31.0898 26.2565 32.0187 26.2565C32.9476 26.2565 33.7066 25.478 33.7066 24.5253V17.1359C33.6953 16.1716 32.9476 15.4047 32.0187 15.4047Z"
+                    fill="#79DD7F"
+                  />
+                </svg>
+              </i>
+            </div>
+            <div class="device-name">{{ device.name }}</div>
+          </div>
+          <div class="device-count">
+            <span class="count">{{ device.count }}</span>
+            <button class="view-button">Active</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

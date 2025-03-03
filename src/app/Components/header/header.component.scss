@@ -1,0 +1,22 @@
+nav {
+  width: 80vw;
+  height: 10vh;
+  border-radius: 10px;
+  .lefticon {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+  }
+  .nav-item {
+    color: aqua;
+
+  }
+  .navbar-brand {
+   font-size: 2rem;
+    
+  }
+  .nav-image{
+   background:aqua;
+    border-radius: 100%;
+  }
+}
