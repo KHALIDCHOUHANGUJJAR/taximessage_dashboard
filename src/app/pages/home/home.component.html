@@ -1,100 +1,101 @@
 <div class="dashboard-container">
-  <div class="sidebar">
-    <button
-      *ngFor="let btn of ['Total', 'WhatsApp', 'SMS', 'Not Sent']"
-      [class.active]="activeButton === btn"
-      (click)="setActiveButton(btn)"
-    >
-      {{ btn }}
-    </button>
-  </div>
-
   <div class="main-content">
-    <div class="stats-panel">
-      <div class="stats-header">
-        <h1>Total Messages</h1>
-        <div class="message-types">
-          <ul class="list">
-            <li [class.active]="activeButton === 'Total'">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="20px"
-                viewBox="0 -960 960 960"
-                width="20px"
-                fill="#FBA231"
-              >
-                <path
-                  d="m147-237-51-51 288-288 157 156 269-302 54 48-320 360-160-160-237 237Z"
-                />
-              </svg>
-              Total Messages
-            </li>
-            <li [class.active]="activeButton === 'WhatsApp'">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="20px"
-                viewBox="0 -960 960 960"
-                width="20px"
-                fill="#2EBC96"
-              >
-                <path
-                  d="m147-237-51-51 288-288 157 156 269-302 54 48-320 360-160-160-237 237Z"
-                /></svg
-              >WhatsApp
-            </li>
-            <li [class.active]="activeButton === 'SMS'">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="20px"
-                viewBox="0 -960 960 960"
-                width="20px"
-                fill="#3981F7"
-              >
-                <path
-                  d="m147-237-51-51 288-288 157 156 269-302 54 48-320 360-160-160-237 237Z"
-                /></svg
-              >SMS
-            </li>
-            <li [class.active]="activeButton === 'Not Sent'">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="20px"
-                viewBox="0 -960 960 960"
-                width="20px"
-                fill="#FF0606"
-              >
-                <path
-                  d="m147-237-51-51 288-288 157 156 269-302 54 48-320 360-160-160-237 237Z"
-                /></svg
-              >Not Sent
-            </li>
-          </ul>
-        </div>
-        <div class="time-periods">
-          <ul>
-            <li>1M</li>
-            <li>3M</li>
-            <li class="active">6M</li>
-            <li>1Y</li>
-          </ul>
-        </div>
+    <div class="topbar">
+      <div class="sidebar">
+        <button
+          *ngFor="let btn of ['Total', 'WhatsApp', 'SMS', 'Not Sent']"
+          [class.active]="activeButton === btn"
+          (click)="setActiveButton(btn)"
+        >
+          {{ btn }}
+        </button>
       </div>
-
-      <div class="stats-total">
-        <h1>{{ totalMessages }}</h1>
-        <div class="total-percentage">
-          <p>{{ totalMessagesPercentage }}</p>
-          vs last month
+      <div class="stats-panel">
+        <div class="stats-header">
+          <h1>Total Messages</h1>
+          <div class="message-types">
+            <ul class="list">
+              <li [class.active]="activeButton === 'Total'">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="20px"
+                  viewBox="0 -960 960 960"
+                  width="20px"
+                  fill="#FBA231"
+                >
+                  <path
+                    d="m147-237-51-51 288-288 157 156 269-302 54 48-320 360-160-160-237 237Z"
+                  />
+                </svg>
+                Total Messages
+              </li>
+              <li [class.active]="activeButton === 'WhatsApp'">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="20px"
+                  viewBox="0 -960 960 960"
+                  width="20px"
+                  fill="#2EBC96"
+                >
+                  <path
+                    d="m147-237-51-51 288-288 157 156 269-302 54 48-320 360-160-160-237 237Z"
+                  /></svg
+                >WhatsApp
+              </li>
+              <li [class.active]="activeButton === 'SMS'">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="20px"
+                  viewBox="0 -960 960 960"
+                  width="20px"
+                  fill="#3981F7"
+                >
+                  <path
+                    d="m147-237-51-51 288-288 157 156 269-302 54 48-320 360-160-160-237 237Z"
+                  /></svg
+                >SMS
+              </li>
+              <li [class.active]="activeButton === 'Not Sent'">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="20px"
+                  viewBox="0 -960 960 960"
+                  width="20px"
+                  fill="#FF0606"
+                >
+                  <path
+                    d="m147-237-51-51 288-288 157 156 269-302 54 48-320 360-160-160-237 237Z"
+                  /></svg
+                >Not Sent
+              </li>
+            </ul>
+          </div>
+          <div class="time-periods">
+            <ul>
+              <li>1M</li>
+              <li>3M</li>
+              <li class="active">6M</li>
+              <li>1Y</li>
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <div class="stats-chart">
-        <p-chart
-          type="line"
-          [data]="lineChartData"
-          [options]="lineChartOptions"
-          height="10rem"
-        ></p-chart>
+        <div class="stats-total">
+          <h1>{{ totalMessages }}</h1>
+          <div class="total-percentage">
+            <p>{{ totalMessagesPercentage }}</p>
+            vs last month
+          </div>
+        </div>
+
+        <div class="stats-chart">
+          <p-chart
+            type="line"
+            [data]="lineChartData"
+            [options]="lineChartOptions"
+            height="10rem"
+          ></p-chart>
+        </div>
       </div>
     </div>
 
@@ -136,7 +137,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-message>
           <tr>
-            <td>{{ message.date }}</td>
+            <td class="messageDate">{{ message.date }}</td>
             <td>
               <span [class]="message.targetType">{{ message.targetType }}</span>
             </td>
@@ -160,18 +161,39 @@
   <div class="right-panel">
     <div class="card messages-average">
       <div class="header-btn">
+        <div class="date">
+          <p>{{ currentDate }}</p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <g clip-path="url(#clip0_2535_1218)">
+              <path
+                d="M6 10C4.9 10 4 10.9 4 12C4 13.1 4.9 14 6 14C7.1 14 8 13.1 8 12C8 10.9 7.1 10 6 10ZM18 10C16.9 10 16 10.9 16 12C16 13.1 16.9 14 18 14C19.1 14 20 13.1 20 12C20 10.9 19.1 10 18 10ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10Z"
+                fill="white"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_2535_1218">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
         <h2>Messages Average</h2>
       </div>
 
       <div class="average-stats">
         <div class="stat">
-          <h3>{{ messageAverage }}</h3>
           <p>Monthly</p>
+          <h5>{{ messageAverage }}</h5>
         </div>
-        <div class="divider"></div>
-        <div class="stat">
-          <h3>{{ dailyAverage }}</h3>
-          <p>Daily</p>
+        <div class="stat1">
+          <p>SMS</p>
+          <h5>{{ dailyAverage }}</h5>
         </div>
       </div>
 
@@ -183,40 +205,38 @@
           height="80px"
         ></p-chart>
         <div class="gauge-value">
-          <h2>{{ totalMessages }}</h2>
           <span>{{ 70 }}%</span>
+          <h2>{{ totalMessages }}</h2>
         </div>
       </div>
     </div>
 
     <!-- Devices Card -->
     <div class="card devices">
-      <div class="card-header">
-        <div class="btn-header">
-          <div class="total-devices">
-            Total devices
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <g clip-path="url(#clip0_2535_1218)">
-                <path
-                  d="M6 10C4.9 10 4 10.9 4 12C4 13.1 4.9 14 6 14C7.1 14 8 13.1 8 12C8 10.9 7.1 10 6 10ZM18 10C16.9 10 16 10.9 16 12C16 13.1 16.9 14 18 14C19.1 14 20 13.1 20 12C20 10.9 19.1 10 18 10ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10Z"
-                  fill="white"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_2535_1218">
-                  <rect width="24" height="24" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
-          </div>
-          <h2>Devices</h2>
+      <div class="btn-header">
+        <div class="total-devices">
+          Total devices
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <g clip-path="url(#clip0_2535_1218)">
+              <path
+                d="M6 10C4.9 10 4 10.9 4 12C4 13.1 4.9 14 6 14C7.1 14 8 13.1 8 12C8 10.9 7.1 10 6 10ZM18 10C16.9 10 16 10.9 16 12C16 13.1 16.9 14 18 14C19.1 14 20 13.1 20 12C20 10.9 19.1 10 18 10ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10Z"
+                fill="white"
+              />
+            </g>
+            <defs>
+              <clipPath id="clip0_2535_1218">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
         </div>
+        <h2>Devices</h2>
       </div>
 
       <div class="device-list">
@@ -254,7 +274,6 @@
             <div class="device-name">{{ device.name }}</div>
           </div>
           <div class="device-count">
-            <span class="count">{{ device.count }}</span>
             <button class="view-button">Active</button>
           </div>
         </div>

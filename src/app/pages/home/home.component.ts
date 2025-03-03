@@ -37,7 +37,7 @@ export class HomeComponent {
       messageType: 'Airload',
       status: 'whatsapp',
       sent: 'Sent',
-      message: 'Dummy text for message content...',
+      message: 'Dummy text is...',
     },
     {
       date: 'FEB 03/07/2024, 4:05PM',
@@ -46,7 +46,25 @@ export class HomeComponent {
       messageType: 'Airload',
       status: 'whatsapp',
       sent: 'Not Sent',
-      message: 'Dummy text for message content...',
+      message: 'Dummy text is...',
+    },
+    {
+      date: 'FEB 03/07/2024, 4:05PM',
+      targetType: 'whatsapp',
+      target: '+4795555555',
+      messageType: 'Airload',
+      status: 'whatsapp',
+      sent: 'Sent',
+      message: 'Dummy text is...',
+    },
+    {
+      date: 'FEB 03/07/2024, 4:05PM',
+      targetType: 'whatsapp',
+      target: '+4795555555',
+      messageType: 'Airload',
+      status: 'whatsapp',
+      sent: 'Not Sent',
+      message: 'Dummy text is...',
     },
   ];
 
@@ -128,7 +146,7 @@ export class HomeComponent {
       datasets: [
         {
           data: [30, 70],
-          backgroundColor: ['rgba(200, 200, 200, 0.2)', '#4CAF50'],
+          backgroundColor: ['#3981F7', '#4CAF50'],
           borderWidth: 0,
           circumference: 180,
           rotation: 270,

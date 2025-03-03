@@ -13,21 +13,20 @@
   display: flex;
   width: 101px;
   height: 230px;
-  margin-top: 20px;
   flex-direction: column;
-  align-items: center;
   justify-content: space-between;
 
   button {
     border-radius: 8px;
     border: 1px solid #e4e4e7;
+    background: #fff;
     width: 8vw;
     height: 6vh;
     box-shadow: 0px 10px 30px 0px rgba(46, 188, 150, 0.1);
 
     &.active,
     &:hover {
-      background-color: #1ea97c;
+      background: linear-gradient(0deg, #2ebc96 0%, #1a9096 100%);
       color: white;
     }
 
@@ -51,20 +50,27 @@
 
 /* Main Content */
 .main-content {
-  flex: 1;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
   height: 100%;
   overflow-y: auto;
 }
-
+.topbar {
+  display: flex;
+  height: 100%;
+  padding: 10px;
+  gap: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0px 2px 20px 0px rgba(112, 144, 128, 0.2);
+}
 .stats-panel {
-  background-color: white;
   border-radius: 12px;
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 20px;
-  background: #fff;
-  box-shadow: 0px 2px 20px 0px rgba(112, 144, 128, 0.2);
+  width: 90%;
+  border: 1px solid #e4e4e7;
 }
 
 .stats-header {
@@ -189,76 +195,64 @@
   display: flex;
   gap: 8px;
   flex-direction: column;
-  width: 300px;
+  width: 283px;
   height: 100%;
-  background: #fff;
-
-  box-shadow: 0px 2px 20px 0px rgba(112, 144, 128, 0.2);
   border-radius: 10px;
 }
 
 .card {
   background-color: white;
   border-radius: 12px;
-  padding: 10px;
+  padding: 9px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
-.btn-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-
-}
-
 .messages-average {
-  h2 {
+  .header-btn {
     color: white;
-    background-color: #1ea97c;
-    padding: 10px 15px;
-    border-radius: 8px;
-    font-size: 16px;
-    margin: 10px 0 20px 0;
+    background: linear-gradient(0deg, #2ebc96 0%, #1a9096 100%);
+    padding: 0px 5px 0px 20px;
+    border-radius: 15px;
+    font-weight: 700;
+  }
+  h2 {
+    font-size: 25px;
+    font-weight: 700;
+  }
+  .date {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
 }
 
 .average-stats {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2px;
+  font-size: 10px;
   .stat {
-    text-align: center;
-    flex: 1;
-
-    h3 {
-      font-size: 19px;
-      font-weight: 700;
-      margin: 0;
-      color: #333;
-    }
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-left: 4px solid #2ebc96;
     p {
-      font-size: 12px;
-      color: #666;
-      margin: 5px 0 0 0;
+      text-align: center;
+      height: 10px;
     }
   }
-
-  .divider {
-    width: 1px;
-    height: 40px;
-    background: #fff;
-
-    box-shadow: 0px 2px 20px 0px rgba(112, 144, 128, 0.2);
+  .stat1 {
+    text-align: center;
+    border-left: 4px solid #3981f7;
   }
 }
 
 .gauge-chart {
   position: relative;
-  height: 100px;
-  margin-top: 2px;
+  height: 90px;
+  margin-top: 1px;
 
   .gauge-value {
     position: absolute;
@@ -287,10 +281,10 @@
 .devices {
   .btn-header {
     color: white;
-    background-color: #1ea97c;
+    background: linear-gradient(0deg, #2ebc96 0%, #1a9096 100%);
     width: 100%;
-    padding: 1px 15px;
-    border-radius: 8px;
+    padding: 0px 15px 0px 10px;
+    border-radius: 15px;
     .total-devices {
       display: flex;
       justify-content: space-between;
@@ -302,7 +296,7 @@
 .device-list {
   display: flex;
   flex-direction: column;
-  gap: 1 px;
+  gap: 1px;
 }
 
 .device-item {
@@ -335,8 +329,8 @@
 }
 
 .device-name {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .device-count {
@@ -351,10 +345,10 @@
   }
 
   .view-button {
-    background-color: #1ea97c;
+    background: linear-gradient(180deg, #27a080 0%, #27d1a5 100%);
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 30px;
     padding: 4px 8px;
     font-size: 12px;
     cursor: pointer;
@@ -367,13 +361,13 @@
     background-color: #f8f9fa;
     color: #666;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 14px;
     padding: 10px 15px;
   }
 
   .p-datatable .p-datatable-tbody > tr > td {
-    padding: 10px 15px;
-    font-size: 13px;
+    padding: 10px 4px;
+    font-size: 12px;
   }
 
   .p-datatable .p-datatable-tbody > tr:hover {
@@ -414,6 +408,88 @@
 }
 
 /* Responsive Design */
+
+@media (min-width: 1400px) {
+  .dashboard-container {
+    flex-direction: row;
+  }
+
+  .sidebar {
+    width: 100px;
+    height: 100%;
+    gap: 2rem;
+  }
+
+  .sidebar button {
+    width: 100px;
+    height: 50px;
+    font-size: 16px;
+  }
+
+  .main-content {
+    padding: 30px;
+  }
+  .stats-chart {
+    height: 200px;
+  }
+  .stats-panel {
+    padding: 30px;
+    margin-bottom: 20px;
+  }
+
+  .stats-header h1 {
+    font-size: 22px;
+  }
+
+  .stats-total h1 {
+    font-size: 45px;
+  }
+
+  .right-panel {
+    width: 350px;
+  }
+  .messages-average {
+    .header-btn {
+      padding: 0px 10px 0px 20px;
+      margin-bottom: 20px;
+      gap: 10rem;
+    }
+    h2 {
+      font-size: 27px;
+      font-weight: 800;
+    }
+  }
+  .card {
+    padding: 27px;
+  }
+  .gauge-chart {
+    margin-top: 3rem;
+  }
+  .messages-table {
+    padding: 15px;
+  }
+  .table-header {
+    padding: 0 1px 15px 1px;
+    h2 {
+      font-size: 23px;
+      font-weight: 800;
+    }
+  }
+  :host ::ng-deep {
+    .p-datatable .p-datatable-thead > tr > th {
+      font-size: 18px;
+    }
+
+    .p-datatable .p-datatable-tbody > tr > td {
+      padding: 13px 4px;
+      font-size: 16px;
+    }
+  }
+  .device-item {
+    padding: 20px;
+  }
+}
+
 @media (max-width: 1200px) {
   .dashboard-container {
     flex-direction: column;

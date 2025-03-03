@@ -9,14 +9,17 @@ nav {
   }
   .nav-item {
     color: aqua;
-
   }
   .navbar-brand {
-   font-size: 2rem;
-    
+    font-size: 2rem;
   }
-  .nav-image{
-   background:aqua;
+  .nav-image {
+    background: aqua;
     border-radius: 100%;
+  }
+}
+@media (min-width: 1380px) {
+  nav {
+    width: 83vw;
   }
 }
