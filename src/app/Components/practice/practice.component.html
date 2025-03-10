@@ -1,0 +1,5 @@
+<ul>
+  <li *ngFor="let item of data | slice : 0 : 5">{{ item.title }}</li>
+</ul>
+
+<button (click)="sendData()">SendData to home</button>

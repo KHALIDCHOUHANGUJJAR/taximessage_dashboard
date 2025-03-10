@@ -4,6 +4,7 @@ import { ChartModule } from 'primeng/chart';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { TableModule } from 'primeng/table';
+
 @Component({
   selector: 'app-home',
   imports: [CommonModule, ChartModule, ButtonModule, CardModule, TableModule],
@@ -69,7 +70,7 @@ export class HomeComponent {
   ];
 
   ngOnInit() {
-    this.initLineChart();
+    this.initLineChart1();
     this.initGaugeChart();
   }
 
@@ -77,7 +78,7 @@ export class HomeComponent {
     this.activeButton = button;
   }
 
-  initLineChart() {
+  initLineChart1() {
     const documentStyle = getComputedStyle(document.documentElement);
 
     this.lineChartData = {
@@ -85,31 +86,31 @@ export class HomeComponent {
       datasets: [
         {
           label: 'Total Messages',
-          data: [3200, 3800, 4335, 3900, 4100, 4300],
-          fill: false,
-          borderColor: documentStyle.getPropertyValue('--yellow-500'),
-          tension: 0.4,
+          data: [1000, 500, 2000, 300, 500, 5000],
+          fill: true,
+          borderColor: documentStyle.getPropertyValue('--blue-100'),
+          tension: 0.1,
         },
         {
           label: 'WhatsApp',
-          data: [1800, 2200, 2500, 2800, 2600, 2900],
-          fill: false,
+          data: [1800, 5000, 2500, 2800, 2600, 2900],
+          fill: true,
           borderColor: documentStyle.getPropertyValue('--green-500'),
-          tension: 0.4,
+          tension: 0.1,
         },
         {
           label: 'SMS',
-          data: [1000, 1200, 1400, 1600, 1800, 1700],
-          fill: false,
-          borderColor: documentStyle.getPropertyValue('--blue-500'),
-          tension: 0.4,
+          data: [500, 2000, 5000, 1600, 1800, 1700],
+          fill: true,
+          borderColor: documentStyle.getPropertyValue('--red-500'),
+          tension: 0.1,
         },
         {
           label: 'Not Sent',
-          data: [400, 500, 600, 700, 800, 750],
-          fill: false,
-          borderColor: documentStyle.getPropertyValue('--red-500'),
-          tension: 0.4,
+          data: [400, 500, 600, 700, 5000, 750],
+          fill: true,
+          borderColor: documentStyle.getPropertyValue('#EAB054'),
+          tension: 0.1,
         },
       ],
     };
@@ -134,7 +135,7 @@ export class HomeComponent {
         y: {
           grid: {
             display: true,
-            color: documentStyle.getPropertyValue('--surface-200'),
+            color: documentStyle.getPropertyValue('--surface-500'),
           },
         },
       },

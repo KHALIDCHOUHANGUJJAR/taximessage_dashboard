@@ -17,6 +17,27 @@ nav {
     background: aqua;
     border-radius: 100%;
   }
+  .upper-header {
+    h4 {
+      color: #707eae;
+      font-family: "DM Sans";
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 24px; /* 171.429% */
+      letter-spacing: -0.28px;
+    }
+    h1 a {
+      color: #000;
+
+      font-family: "DM Sans";
+      font-size: 34px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 42px;
+      letter-spacing: -0.68px;
+    }
+  }
 }
 @media (min-width: 1380px) {
   nav {
