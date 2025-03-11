@@ -1,4 +1,4 @@
-import { Component, type OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChartModule } from 'primeng/chart';
 import { ButtonModule } from 'primeng/button';
@@ -7,22 +7,24 @@ import { TableModule } from 'primeng/table';
 
 @Component({
   selector: 'app-home',
+  standalone: true,
   imports: [CommonModule, ChartModule, ButtonModule, CardModule, TableModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   activeButton = 'Total';
   lineChartData: any;
   lineChartOptions: any;
   gaugeChartData: any;
   gaugeChartOptions: any;
-
-  totalMessages = 34029;
   totalMessagesPercentage = '30%';
-  messageAverage = 12763;
-  dailyAverage = 782;
+  totalMessages = 34029;
+  messageAverage = 23820;
+  dailyAverage = 7209;
+
   currentDate = new Date().toISOString().split('T')[0];
+  isHide = true;
 
   devices = [
     { name: 'Samsung Galaxy A52', count: 120 },
@@ -55,7 +57,7 @@ export class HomeComponent {
       target: '+4795555555',
       messageType: 'Airload',
       status: 'whatsapp',
-      sent: 'Sent',
+      sent: 'Not Sent',
       message: 'Dummy text is...',
     },
     {
@@ -69,69 +71,77 @@ export class HomeComponent {
     },
   ];
 
+  originalDatasets: any[] = [];
+
   ngOnInit() {
-    this.initLineChart1();
+    this.initLineChart();
     this.initGaugeChart();
   }
 
   setActiveButton(button: string) {
     this.activeButton = button;
+
+    if (button === 'Total') {
+      this.lineChartData.datasets = [...this.originalDatasets];
+    } else {
+      this.lineChartData.datasets = this.originalDatasets.filter(
+        (dataset) => dataset.label === button
+      );
+    }
+
+    this.lineChartData = { ...this.lineChartData };
   }
 
-  initLineChart1() {
+  initLineChart() {
     const documentStyle = getComputedStyle(document.documentElement);
+
+    this.originalDatasets = [
+      {
+        label: 'Total Messages',
+        data: [100, 100, 100, 5000, 100, 100],
+        fill: true,
+        borderColor: documentStyle.getPropertyValue('--blue-100'),
+        tension: 0.1,
+      },
+      {
+        label: 'WhatsApp',
+        data: [1800, 5000, 2500, 2800, 2600, 2900],
+        fill: true,
+        borderColor: documentStyle.getPropertyValue('--green-500'),
+        tension: 0.1,
+      },
+      {
+        label: 'SMS',
+        data: [500, 2000, 5000, 1600, 1800, 1700],
+        fill: true,
+        borderColor: documentStyle.getPropertyValue('--red-500'),
+        tension: 0.1,
+      },
+      {
+        label: 'Not Sent',
+        data: [400, 500, 600, 700, 5000, 750],
+        fill: true,
+        borderColor: documentStyle.getPropertyValue('#EAB054'),
+        tension: 0.1,
+      },
+    ];
 
     this.lineChartData = {
       labels: ['Feb 8', 'Feb 9', 'Feb 10', 'Feb 11', 'Feb 12', 'Feb 13'],
-      datasets: [
-        {
-          label: 'Total Messages',
-          data: [1000, 500, 2000, 300, 500, 5000],
-          fill: true,
-          borderColor: documentStyle.getPropertyValue('--blue-100'),
-          tension: 0.1,
-        },
-        {
-          label: 'WhatsApp',
-          data: [1800, 5000, 2500, 2800, 2600, 2900],
-          fill: true,
-          borderColor: documentStyle.getPropertyValue('--green-500'),
-          tension: 0.1,
-        },
-        {
-          label: 'SMS',
-          data: [500, 2000, 5000, 1600, 1800, 1700],
-          fill: true,
-          borderColor: documentStyle.getPropertyValue('--red-500'),
-          tension: 0.1,
-        },
-        {
-          label: 'Not Sent',
-          data: [400, 500, 600, 700, 5000, 750],
-          fill: true,
-          borderColor: documentStyle.getPropertyValue('#EAB054'),
-          tension: 0.1,
-        },
-      ],
+      datasets: [...this.originalDatasets], // Initially show all datasets
     };
 
     this.lineChartOptions = {
       plugins: {
-        legend: {
-          display: false,
-        },
+        legend: { display: false },
         tooltip: {
           callbacks: {
-            title: (context: any) => 'Tuesday, Feb 10, 2023',
+            title: () => 'Tuesday, Feb 10, 2023',
           },
         },
       },
       scales: {
-        x: {
-          grid: {
-            display: false,
-          },
-        },
+        x: { grid: { display: false } },
         y: {
           grid: {
             display: true,
@@ -143,10 +153,13 @@ export class HomeComponent {
   }
 
   initGaugeChart() {
+    const percentage = (this.dailyAverage / this.messageAverage) * 100;
+    const remaning = 100 - percentage;
+
     this.gaugeChartData = {
       datasets: [
         {
-          data: [30, 70],
+          data: [percentage, remaning],
           backgroundColor: ['#3981F7', '#4CAF50'],
           borderWidth: 0,
           circumference: 180,
@@ -156,17 +169,14 @@ export class HomeComponent {
     };
 
     this.gaugeChartOptions = {
-      plugins: {
-        legend: {
-          display: false,
-        },
-        tooltip: {
-          enabled: false,
-        },
-      },
+      plugins: { legend: { display: false }, tooltip: { enabled: false } },
       cutout: '70%',
       responsive: true,
       maintainAspectRatio: false,
     };
   }
+
+  handleFilter = () => {
+    this.isHide = !this.isHide;
+  };
 }

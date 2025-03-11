@@ -3,9 +3,6 @@
   height: 100vh;
   background: #f8f9fa;
   padding: 20px;
-  position: fixed;
-  top: 0;
-  left: 0;
   display: flex;
   gap: 20px;
   flex-direction: column;
@@ -13,7 +10,23 @@
   border-right: 1px solid #ececec;
   background: var(--Color-White, #fff);
 }
+.sidebar.collapsed {
+  width: 8rem;
+}
 
+.hidden {
+  display: none;
+}
+.sidebarImage {
+  position: absolute;
+  top: 8%;
+  left: 15%;
+  width: 4rem;
+  height: 4rem;
+}
+.sidebar.collapsed .sidebarImage {
+  left: 6rem;
+}
 .sidebar .logo {
   display: flex;
   justify-content: center;
@@ -48,16 +61,15 @@
 .sidebar .ul2 li a,
 .sidebar .ul3 li a {
   display: flex;
-  align-items: center;
-  gap: 6px;
+    gap: 6px;
 }
 .sidebar nav li a {
   display: flex;
-  align-items: center;
+  height: 100%;
   text-decoration: none;
   color: #333;
   font-size: 16px;
-  padding: 8px;
+  padding: 8px 20px; 
   border-radius: 5px;
   transition: all 0.3s ease-in-out;
 }
@@ -79,18 +91,10 @@
 .sidebar nav .ul3 {
   list-style: none;
   border-radius: 32px;
-
   background: #fff;
-  padding: 10px;
+  padding: 0px;
+  
   box-shadow: 0px 2px 20px 0px rgba(112, 144, 128, 0.2);
-}
-
-.sidebarImage {
-  position: absolute;
-  top: 8%;
-  left: 84%;
-  width: 4rem;
-  height: 4rem;
 }
 
 @media (min-width: 1380px) {

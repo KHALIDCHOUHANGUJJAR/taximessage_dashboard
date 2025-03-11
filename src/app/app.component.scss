@@ -34,15 +34,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 .dashboard-layout {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 10rem;
 }
-.main-content {
-  position: absolute;
-  left: 15.6rem;
-  top: 2%;
+.main-content{
+  width: 100%;
 }

@@ -357,6 +357,79 @@
   }
 }
 
+.filter {
+  background: linear-gradient(5deg, #2ebc96 0%, #1a9096 100%);
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-header,
+.filter-dates {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 100px;
+}
+
+.filter-group label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.filter-group input {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.filter-actions {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.search-button,
+.clear-button {
+  padding: 5px 30px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.search-button {
+  background: white;
+  color: black;
+  font-weight: bold;
+}
+
+.clear-button {
+  background: white;
+  color: black;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .filter-header,
+  .filter-dates {
+    flex-direction: column;
+  }
+}
+
 /* Table Styling */
 :host ::ng-deep {
   .p-datatable .p-datatable-thead > tr > th {

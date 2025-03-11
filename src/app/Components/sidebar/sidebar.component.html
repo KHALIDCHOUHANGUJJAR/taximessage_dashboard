@@ -1,12 +1,14 @@
-<aside class="sidebar">
+<aside class="sidebar" [ngClass]="{ collapsed: isCollapsed }">
   <div class="logo">
     <img src="Assets/Images/LOGO.png" alt="Logo" />
-    <h2>Taxi Messages</h2>
+    <h2 [ngClass]="{ hidden: isCollapsed }">Taxi Messages</h2>
   </div>
   <img
     src="Assets/Images/Frame 1000004117.png"
     alt="image"
     class="sidebarImage"
+    (click)="handleCollapsed()"
+    [ngClass]="{ 'collapsed-img': isCollapsed }"
   />
   <nav>
     <ul class="ul1">
@@ -34,52 +36,55 @@
               stroke-linejoin="round"
             />
           </svg>
-          Home</a
-        >
+          <p [ngClass]="{ hidden: isCollapsed }">Home</p>
+        </a>
       </li>
       <li>
         <a routerLink="/messages" routerLinkActive="active"
           ><img class="img" src="Assets/Images/Icon (1).png" alt="" />
-          Messages</a
-        >
+          <p [ngClass]="{ hidden: isCollapsed }">Message</p>
+        </a>
       </li>
       <li>
         <a routerLink="/blocked-list" routerLinkActive="active"
-          ><img class="img" src="Assets/Images/Icon (2).png" alt="" />Blocked
-          List</a
-        >
+          ><img class="img" src="Assets/Images/Icon (2).png" alt="" />
+          <p [ngClass]="{ hidden: isCollapsed }">Blocked List</p>
+        </a>
       </li>
       <li>
         <a routerLink="/devices" routerLinkActive="active">
-          <img class="img" src="Assets/Images/devices.png" alt="" />Devices</a
-        >
+          <img class="img" src="Assets/Images/devices.png" alt="" />
+          <p [ngClass]="{ hidden: isCollapsed }">Devices</p>
+        </a>
       </li>
 
       <li>
         <a routerLink="/chatbot" routerLinkActive="active"
           ><img class="img" src="Assets/Images/Icon (4).png" alt="" />
-          Chatbot</a
-        >
+          <p [ngClass]="{ hidden: isCollapsed }">chatbot</p>
+        </a>
       </li>
     </ul>
     <ul class="ul2">
       <li>
         <a routerLink="/settings" routerLinkActive="active"
-          ><img class="img" src="Assets/Images/setting.png" alt="" />App
-          Settings</a
-        >
+          ><img class="img" src="Assets/Images/setting.png" alt="" />
+          <p [ngClass]="{ hidden: isCollapsed }">App setting</p>
+        </a>
       </li>
       <li>
         <a routerLink="/profile" routerLinkActive="active"
-          ><img class="img" src="Assets/Images/profile.png" alt="" /> Profile</a
-        >
+          ><img class="img" src="Assets/Images/profile.png" alt="" />
+          <p [ngClass]="{ hidden: isCollapsed }">Profile</p>
+        </a>
       </li>
     </ul>
     <ul class="ul3">
       <li>
         <a routerLink="/logout" routerLinkActive="active"
-          ><img class="img" src="Assets/Images/logout.png" alt="" /> Logout</a
-        >
+          ><img class="img" src="Assets/Images/logout.png" alt="" />
+          <p [ngClass]="{ hidden: isCollapsed }">Logout</p>
+        </a>
       </li>
     </ul>
   </nav>
